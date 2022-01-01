@@ -30,3 +30,20 @@
 *.exe
 *.out
 *.app
+
+# Ignore hidden files
+.*
+*.swp
+
+# CMake building directory
+# remove for bazel
+# build
+CMakeCache.txt
+CMakeFiles/
+Makefile
+
+# vscode
+.vscode
+
+# macOS
+.DS_Store
