@@ -1,0 +1,50 @@
+repos:
+-   repo: https://github.com/Lucas-C/pre-commit-hooks.git
+    sha: v1.1.10
+    hooks:
+    -   id: remove-crlf
+        files: (?!.*third_party)^.*$|(?!.*book)^.*$
+        exclude: ^(third-party/|metal/|web/)
+-   repo: https://github.com/pre-commit/mirrors-yapf
+    sha: v0.32.0
+    hooks:
+    -   id: yapf
+        files: (.*\.(py|bzl)|BUILD|.*\.BUILD|WORKSPACE)$
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    sha: v4.1.0
+    hooks:
+    -   id: check-added-large-files
+    -   id: check-merge-conflict
+    -   id: check-symlinks
+    -   id: detect-private-key
+        files: (?!.*third_party)^.*$|(?!.*book)^.*$
+    -   id: end-of-file-fixer
+        exclude: ^(third-party/)
+-   repo: local
+    hooks:
+    -   id: clang-format-with-version-check
+        name: clang-format
+        description: Format files with ClangFormat.
+        entry: clang-format -i
+        #entry: bash ./tools/codestyle/clang_format.hook -i
+        language: system
+        files: \.(c|cc|cxx|cpp|cu|cl|h|hpp|hxx|proto|mm|m|metal)$
+        exclude: ^(third-party/|metal/|web/)
+-   repo: local
+    hooks:
+    -   id: cpplint-cpp-source
+        name: cpplint
+        description: Check C++ code style using cpplint.py.
+        entry: bash ./tools/codestyle/cpplint_pre_commit.hook
+        language: system
+        files: \.(c|cc|cxx|cpp|cu|cl|h|hpp|hxx)$
+        exclude: ^(third-party/) | ^(metal/) 
+-   repo: local
+    hooks:
+    -   id: copyright_checker
+        name: copyright_checker
+        entry: python ./tools/codestyle/copyright.hook
+        language: system
+        files: \.(c|cc|cxx|cpp|cu|cl|h|hpp|hxx|proto|py|mm|m|metal)$
+        exclude: (?!.*third_party)^.*$|(?!.*book)^.*$
+        exclude: ^(third-party/|metal/|web/)
