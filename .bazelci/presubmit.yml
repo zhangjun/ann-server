@@ -1,0 +1,46 @@
+---
+tasks:
+  ann-server:
+    name: "build ann server"
+    platform: ubuntu1804
+    working_directory: .
+    build_targets:
+    - "..."
+  ann-server-macos:
+    name: "build ann server"
+    platform: macos
+    working_directory: .
+    build_targets:
+    - "..."
+  ann-server-windows:
+    name: "build ann server"
+    platform: windows
+    working_directory: .
+    build_targets:
+    - "..."
+  ubuntu1804_clang:
+    name: "build ann server, clang"
+    platform: ubuntu1804
+    environment:
+      CC: clang
+      CC_CONFIGURE_DEBUG: 1
+    working_directory: .
+    build_targets:
+    - "..."
+#  tutorial-linux:
+#    name: "Bazel end-to-end example"
+#    platform: ubuntu1804
+#    working_directory: tutorial
+#    build_targets:
+#      - "//backend"
+#      - "//android"
+#  tutorial-macos:
+#    name: "Bazel end-to-end example"
+#    platform: macos
+#    working_directory: tutorial
+#    build_targets:
+#      - "//backend"
+#      - "//android"
+#      - "//ios-app"
+
+# https://github.com/bazelbuild/bazel/blob/master/.bazelci/presubmit.yml
