@@ -12,9 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include "brpc/server.h"
+
 #include <iostream>
 
 int main() {
   std::cout << "ann server." << std::endl;
+  brpc::Server server;
+  server.RunUntilAskedToQuit();
   return 0;
 }

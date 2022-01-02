@@ -24,6 +24,9 @@ cc_library(
     visibility = [
         "//visibility:public",
     ],
+    deps = [
+        "@com_github_brpc_brpc//:brpc",
+    ],
 )
 
 cc_binary(
@@ -31,8 +34,10 @@ cc_binary(
     stamp = 1,
     visibility = [
         "//ann-server:internal",
+        #"//visibility:public",
     ],
-	deps = [
+    deps = [
         ":server_lib",
+        #"@com_github_brpc_brpc//:brpc",
     ],
 )
