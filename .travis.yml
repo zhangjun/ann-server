@@ -42,15 +42,12 @@ before_install:
 - sudo apt update 
 - sudo apt-get install -qqy golang automake bison flex g++ git libboost-all-dev libevent-dev libssl-dev libtool make pkg-config # thrift dependencies
 - export GOPATH=$HOME/go && export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-- cd -
 
 install:
 - sudo apt-get install -qqy realpath libgflags-dev libprotobuf-dev libprotoc-dev protobuf-compiler libleveldb-dev libgoogle-perftools-dev libboost-dev libssl-dev libevent-dev libboost-test-dev libgoogle-glog-dev
 - sudo apt-get install -y gdb  # install gdb
-- pwd
 # - wget https://mesalink.s3-us-west-1.amazonaws.com/MesaLink-1.0.0-x86_64_trusty.deb && sudo dpkg -i MesaLink-1.0.0-x86_64_trusty.deb # install MesaLink for trusty
 
 script:
-- pwd
 - export BAZEL_VERSION=$(cat .bazelversion) && sudo apt-get install -qqy bazel-${BAZEL_VERSION}
 - sh +x tools/ci/build_ci.sh
