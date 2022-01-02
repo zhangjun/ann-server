@@ -49,5 +49,5 @@ install:
 # - wget https://mesalink.s3-us-west-1.amazonaws.com/MesaLink-1.0.0-x86_64_trusty.deb && sudo dpkg -i MesaLink-1.0.0-x86_64_trusty.deb # install MesaLink for trusty
 
 script:
-- export BAZEL_VERSION=$(cat .bazelversion) && sudo apt-get install -qqy bazel-${BAZEL_VERSION}
+- export BAZEL_VERSION=$(cat .bazelversion) && sudo apt-get install -qqy bazel-${BAZEL_VERSION} && echo $PATH && which bazel
 - sh +x tools/ci/build_ci.sh
