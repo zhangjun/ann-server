@@ -40,7 +40,7 @@ before_install:
 - sudo mv bazel.gpg /etc/apt/trusted.gpg.d/
 - echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
 - sudo apt update 
-- sudo apt-get install -qqy bazel golang automake bison flex g++ git libboost-all-dev libevent-dev libssl-dev libtool make pkg-config # thrift dependencies
+- sudo apt-get install -qqy golang automake bison flex g++ git libboost-all-dev libevent-dev libssl-dev libtool make pkg-config # thrift dependencies
 - export GOPATH=$HOME/go && export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 - cd -
 
@@ -51,4 +51,5 @@ install:
 # - wget https://mesalink.s3-us-west-1.amazonaws.com/MesaLink-1.0.0-x86_64_trusty.deb && sudo dpkg -i MesaLink-1.0.0-x86_64_trusty.deb # install MesaLink for trusty
 
 script:
+- export BAZEL_VERSION=$(cat .bazelversion) && sudo apt-get install -qqy bazel-${BAZEL_VERSION}
 - sh tools/ci/build_ci.sh
