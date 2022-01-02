@@ -1,0 +1,27 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: setup bazel
+      uses: bazelbuild/setup-bazelisk@v1.0.1
+    - name: Mount bazel cache  # Optional
+      uses: actions/cache@v2
+      with:
+        path: "~/.cache/bazel"
+        key: bazel
+    - name: bazel build
+      run: bazel build //...
+    - name: run server
+      run: |
+        bazel-bin/ann-server/server/server
