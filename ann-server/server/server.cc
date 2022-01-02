@@ -19,6 +19,6 @@
 int main() {
   std::cout << "ann server." << std::endl;
   brpc::Server server;
-  server.RunUntilAskedToQuit();
+  // server.RunUntilAskedToQuit();
   return 0;
 }
