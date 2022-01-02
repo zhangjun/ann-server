@@ -8,6 +8,7 @@ on:
 
 jobs:
   ubuntu-build:
+    if: "!contains(github.event.commits[0].message, '[skip ci]')"
     name: Bazel Ubuntu
     runs-on: ubuntu-latest
 
@@ -27,6 +28,7 @@ jobs:
         bazel-bin/ann-server/server/server
         
   macos-build:
+    if: "!contains(github.event.commits[0].message, '[skip ci]')"
     name: Bazel macOS
     runs-on: macos-latest
 
