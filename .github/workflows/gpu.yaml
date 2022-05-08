@@ -33,7 +33,7 @@ jobs:
       - name: Install CUDA
         env:
           cuda: ${{ matrix.cuda }}
-        run: ./dependencies/cuda-cmake-github-actions/scripts/actions/install_cuda_ubuntu.sh
+        run: ./tools/ci/github-actions/install_cuda_ubuntu.sh
         shell: bash
       - name: test
         run: |
