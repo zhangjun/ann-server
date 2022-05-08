@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build_linux:
+    name: Build on linux systems
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-20.04
+            cuda: "11.3"
+            arch: 86
+          - os: ubuntu-18.04
+            cuda: "10.2"
+            arch: 75
+    env:
+      build_dir: "build"
+      config: "Release"
+    steps:
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install build-essential python3-dev
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Install CUDA
+        env:
+          cuda: ${{ matrix.cuda }}
+        run: ./dependencies/cuda-cmake-github-actions/scripts/actions/install_cuda_ubuntu.sh
+        shell: bash
+      - name: test
+        run: |
+          echo ${{ env.build_dir }} ${{ env.config }}
+          nvcc --version
+          nvidia-smi
+      # - name: Build
+      #  working-directory: ${{ env.build_dir }}
+      #  run: cmake --build . --target all --verbose -j `nproc`
